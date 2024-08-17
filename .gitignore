@@ -1,1 +1,4 @@
 ./commands
+.env
+
+./backend/internal/database/sqlboiler.toml
