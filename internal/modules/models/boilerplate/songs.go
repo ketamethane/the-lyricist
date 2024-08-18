@@ -165,7 +165,7 @@ func (*songR) NewStruct() *songR {
 	return &songR{}
 }
 
-func (r *songR) GetSongs() LyricSlice {
+func (r *songR) GetLyrics() LyricSlice {
 	if r == nil {
 		return nil
 	}

@@ -11,23 +11,23 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
 )
 
-type LyricsRepositoryImp struct {
+type TranslationRepositoryImp struct {
 	db *sql.DB
 }
 
-func NewLyricsRepository() LyricsRepository {
+func NewTranslationRepository() TranslationRepository {
 	database, err := db.GetDB()
 	if err != nil {
 		return nil
 	}
-	return &LyricsRepositoryImp{db: database}
+	return &TranslationRepositoryImp{db: database}
 }
 
 // get all lyrics based on translation and song id
-func (r *LyricsRepositoryImp) GetLyrics(translationID, songID int) ([]*models.Lyric, error) {
-	lyrics, err := models.Lyrics(qm.Where("translation_id = ? and song_id = ? ", translationID, songID)).All(context.Background(), r.db)
+func (r *TranslationRepositoryImp) GetTranslations(translationID int) ([]*models.Translation, error) {
+	translations, err := models.Translations(qm.Where("id = ? ", translationID)).All(context.Background(), r.db)
 	if err != nil {
 		return nil, err
 	}
-	return lyrics, nil
+	return translations, nil
 }

@@ -9,17 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type LyricHandler struct {
-	LyricService services.LyricService
+type TranslationHandler struct {
+	TranslationService services.TranslationService
 }
 
-func NewLyricHandler(lyricService services.LyricService) *LyricHandler {
-	return &LyricHandler{
-		LyricService: lyricService,
+func NewTranslationHandler(TranslationService services.TranslationService) *TranslationHandler {
+	return &TranslationHandler{
+		TranslationService: TranslationService,
 	}
 }
 
-func (h *LyricHandler) GetLyrics(c *gin.Context) {
+func (h *TranslationHandler) GetTranslations(c *gin.Context) {
 	songIDStr := c.Query("song-id")
 	translationIDStr := c.Query("translation-id")
 
@@ -45,15 +45,11 @@ func (h *LyricHandler) GetLyrics(c *gin.Context) {
 		return
 	}
 
-	lyrics, err := h.LyricService.GetLyrics(songID, translationID)
+	lyrics, err := h.TranslationService.GetTranslations(songID, translationID)
 	if err != nil {
 		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	c.JSON(http.StatusOK, lyrics)
-}
-
-func httpError(c *gin.Context, statusCode int, message string) {
-	c.JSON(statusCode, gin.H{"error": message})
 }
