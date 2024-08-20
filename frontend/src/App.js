@@ -1,7 +1,11 @@
 import './App.css';
-import { LyricsPage } from './components/LyricsPage'
+import LyricsPage from './components/LyricsPage'
+import SimpleTestComponent from './components/LyricsPage'
+// import LiteYouTubeEmbed from 'react-lite-youtube-embed'
+// import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
-function App() {
+//import youtube embed and settle dependency issue for furigana component
+const App = () => {
   return (
     <div>
       <LyricsPage/>
@@ -12,17 +16,3 @@ function App() {
 export default App
 
 
-{/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
