@@ -26,6 +26,7 @@ import (
 type Translation struct {
 	ID         int         `boil:"id" json:"id" toml:"id" yaml:"id"`
 	SongID     null.Int    `boil:"song_id" json:"song_id,omitempty" toml:"song_id" yaml:"song_id,omitempty"`
+	Title      null.String `boil:"title" json:"title,omitempty" toml:"title" yaml:"title,omitempty"`
 	Language   null.String `boil:"language" json:"language,omitempty" toml:"language" yaml:"language,omitempty"`
 	Content    null.JSON   `boil:"content" json:"content,omitempty" toml:"content" yaml:"content,omitempty"`
 	Composers  null.JSON   `boil:"composers" json:"composers,omitempty" toml:"composers" yaml:"composers,omitempty"`
@@ -40,6 +41,7 @@ type Translation struct {
 var TranslationColumns = struct {
 	ID         string
 	SongID     string
+	Title      string
 	Language   string
 	Content    string
 	Composers  string
@@ -49,6 +51,7 @@ var TranslationColumns = struct {
 }{
 	ID:         "id",
 	SongID:     "song_id",
+	Title:      "title",
 	Language:   "language",
 	Content:    "content",
 	Composers:  "composers",
@@ -60,6 +63,7 @@ var TranslationColumns = struct {
 var TranslationTableColumns = struct {
 	ID         string
 	SongID     string
+	Title      string
 	Language   string
 	Content    string
 	Composers  string
@@ -69,6 +73,7 @@ var TranslationTableColumns = struct {
 }{
 	ID:         "translations.id",
 	SongID:     "translations.song_id",
+	Title:      "translations.title",
 	Language:   "translations.language",
 	Content:    "translations.content",
 	Composers:  "translations.composers",
@@ -82,6 +87,7 @@ var TranslationTableColumns = struct {
 var TranslationWhere = struct {
 	ID         whereHelperint
 	SongID     whereHelpernull_Int
+	Title      whereHelpernull_String
 	Language   whereHelpernull_String
 	Content    whereHelpernull_JSON
 	Composers  whereHelpernull_JSON
@@ -91,6 +97,7 @@ var TranslationWhere = struct {
 }{
 	ID:         whereHelperint{field: "\"translations\".\"id\""},
 	SongID:     whereHelpernull_Int{field: "\"translations\".\"song_id\""},
+	Title:      whereHelpernull_String{field: "\"translations\".\"title\""},
 	Language:   whereHelpernull_String{field: "\"translations\".\"language\""},
 	Content:    whereHelpernull_JSON{field: "\"translations\".\"content\""},
 	Composers:  whereHelpernull_JSON{field: "\"translations\".\"composers\""},
@@ -137,9 +144,9 @@ func (r *translationR) GetLyrics() LyricSlice {
 type translationL struct{}
 
 var (
-	translationAllColumns            = []string{"id", "song_id", "language", "content", "composers", "lyrics_full", "producers", "video_link"}
+	translationAllColumns            = []string{"id", "song_id", "title", "language", "content", "composers", "lyrics_full", "producers", "video_link"}
 	translationColumnsWithoutDefault = []string{}
-	translationColumnsWithDefault    = []string{"id", "song_id", "language", "content", "composers", "lyrics_full", "producers", "video_link"}
+	translationColumnsWithDefault    = []string{"id", "song_id", "title", "language", "content", "composers", "lyrics_full", "producers", "video_link"}
 	translationPrimaryKeyColumns     = []string{"id"}
 	translationGeneratedColumns      = []string{}
 )

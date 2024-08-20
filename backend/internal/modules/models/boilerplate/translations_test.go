@@ -1066,7 +1066,7 @@ func testTranslationsSelect(t *testing.T) {
 }
 
 var (
-	translationDBTypes = map[string]string{`ID`: `integer`, `SongID`: `integer`, `Language`: `character`, `Content`: `jsonb`, `Composers`: `jsonb`, `LyricsFull`: `jsonb`, `Producers`: `jsonb`, `VideoLink`: `text`}
+	translationDBTypes = map[string]string{`ID`: `integer`, `SongID`: `integer`, `Title`: `character varying`, `Language`: `character`, `Content`: `jsonb`, `Composers`: `jsonb`, `LyricsFull`: `jsonb`, `Producers`: `jsonb`, `VideoLink`: `text`}
 	_                  = bytes.MinRead
 )
 
