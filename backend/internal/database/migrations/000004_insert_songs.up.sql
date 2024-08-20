@@ -1,6 +1,5 @@
-INSERT INTO Songs (title, anime, released)
+INSERT INTO Songs (anime, released)
 VALUES (
-  'サムライハート (Some Like It Hot!!)',
   'Gintama',
   '2011-06-08'
 );

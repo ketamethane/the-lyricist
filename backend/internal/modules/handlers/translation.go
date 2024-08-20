@@ -20,19 +20,7 @@ func NewTranslationHandler(TranslationService services.TranslationService) *Tran
 }
 
 func (h *TranslationHandler) GetTranslations(c *gin.Context) {
-	songIDStr := c.Query("song-id")
 	translationIDStr := c.Query("translation-id")
-
-	if songIDStr == "" {
-		httpError(c, http.StatusBadRequest, "Missing required query parameters: company id")
-		return
-	}
-
-	songID, err := strconv.Atoi(songIDStr)
-	if err != nil {
-		httpError(c, http.StatusBadRequest, "Invalid company id")
-		return
-	}
 
 	if translationIDStr == "" {
 		httpError(c, http.StatusBadRequest, "Missing required query parameters: translation id")
@@ -45,7 +33,7 @@ func (h *TranslationHandler) GetTranslations(c *gin.Context) {
 		return
 	}
 
-	lyrics, err := h.TranslationService.GetTranslations(songID, translationID)
+	lyrics, err := h.TranslationService.GetTranslations(translationID)
 	if err != nil {
 		httpError(c, http.StatusInternalServerError, err.Error())
 		return

@@ -22,7 +22,6 @@ func NewSongHandler(SongService services.SongService) *SongHandler {
 // improve database search for items
 func (h *SongHandler) GetSongs(c *gin.Context) {
 	songIDStr := c.Query("song-id")
-	translationIDStr := c.Query("translation-id")
 
 	if songIDStr == "" {
 		httpError(c, http.StatusBadRequest, "Missing required query parameters: company id")
@@ -30,17 +29,6 @@ func (h *SongHandler) GetSongs(c *gin.Context) {
 	}
 
 	songID, err := strconv.Atoi(songIDStr)
-	if err != nil {
-		httpError(c, http.StatusBadRequest, "Invalid company id")
-		return
-	}
-
-	if translationIDStr == "" {
-		httpError(c, http.StatusBadRequest, "Missing required query parameters: translation id")
-		return
-	}
-
-	translationID, err := strconv.Atoi(translationIDStr)
 	if err != nil {
 		httpError(c, http.StatusBadRequest, "Invalid company id")
 		return
